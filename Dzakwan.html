@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dzakwan Photography | XI MIPA 6 SMA Negeri 2 Garut</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-blue: #22404a;
+            --medium-blue: #4c6a78;
+            --light-gray: #b2bcbb;
+            --teal: #77b3b8;
+            --off-white: #e4eff0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--off-white);
+            color: var(--dark-blue);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Animasi dasar */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--dark-blue), var(--medium-blue));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--teal);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .profile-pic:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .social-links a:hover {
+            color: var(--teal);
+            transform: translateY(-3px);
+        }
+        
+        .bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .bubble:nth-child(1) {
+            width: 40px;
+            height: 40px;
+            left: 10%;
+            animation-duration: 15s;
+        }
+        
+        .bubble:nth-child(2) {
+            width: 20px;
+            height: 20px;
+            left: 20%;
+            animation-duration: 12s;
+            animation-delay: 1s;
+        }
+        
+        .bubble:nth-child(3) {
+            width: 50px;
+            height: 50px;
+            left: 35%;
+            animation-duration: 18s;
+            animation-delay: 2s;
+        }
+        
+        .bubble:nth-child(4) {
+            width: 30px;
+            height: 30px;
+            left: 50%;
+            animation-duration: 14s;
+            animation-delay: 0.5s;
+        }
+        
+        .bubble:nth-child(5) {
+            width: 25px;
+            height: 25px;
+            left: 65%;
+            animation-duration: 16s;
+            animation-delay: 1.5s;
+        }
+        
+        .bubble:nth-child(6) {
+            width: 45px;
+            height: 45px;
+            left: 75%;
+            animation-duration: 13s;
+            animation-delay: 3s;
+        }
+        
+        .bubble:nth-child(7) {
+            width: 35px;
+            height: 35px;
+            left: 90%;
+            animation-duration: 17s;
+            animation-delay: 2.5s;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-blue);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: var(--teal);
+            border-radius: 2px;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--medium-blue);
+        }
+        
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .photo-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .photo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .photo-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .photo-card:hover .photo-img {
+            transform: scale(1.05);
+        }
+        
+        .photo-info {
+            padding: 1.5rem;
+        }
+        
+        .photo-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-blue);
+        }
+        
+        .photo-desc {
+            color: var(--medium-blue);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .photo-context {
+            display: inline-block;
+            background: var(--teal);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .hobbies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .hobby {
+            background: var(--teal);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Section */
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-card {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--teal);
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--teal);
+        }
+        
+        .copyright {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="bubbles">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+        </div>
+        <div class="header-content">
+            <img src="Dzakwan.png" alt="Muhammad Dzakwan Naufal" class="profile-pic">
+            <h1>Muhammad Dzakwan Naufal</h1>
+            <p class="subtitle">XI MIPA 6 | SMA Negeri 2 Garut</p>
+            <p>Fotografi adalah cara saya melihat keindahan dunia</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/dzkunfeal_/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:muhamaddzakwan43@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section id="about">
+            <h2>Tentang Saya</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Halo! Saya Muhammad Dzakwan Naufal, siswa kelas XI MIPA 6 di SMA Negeri 2 Garut. Fotografi adalah passion saya sejak kecil. Melalui lensa kamera, saya suka menangkap momen-momen indah dan berbagi cerita melalui gambar.</p>
+                    <p>Saya percaya setiap foto memiliki cerita uniknya sendiri, dan saya berusaha untuk menangkap esensi dari setiap momen yang saya abadikan.</p>
+                    <div class="hobbies">
+                        <span class="hobby">Fotografi</span>
+                        <span class="hobby">Editing Foto</span>
+                        <span class="hobby">Jelajah Alam</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="gallery">
+            <h2>Karya Fotografi</h2>
+            <p>Beberapa hasil jepretan kamera saya yang menangkap momen-momen spesial.</p>
+            
+            <div class="gallery">
+                <div class="photo-card">
+                    <img src="IMG_20240525_205502_414.jpg" alt="Api Unggun Malam Hari" class="photo-img">
+                    <div class="photo-info">
+                        <h3 class="photo-title">Api Unggun Malam Hari</h3>
+                        <p class="photo-desc">Foto ini menampilkan api unggun besar di malam hari. Api menyala terang dengan lidah api berwarna oranye dan kuning, sementara percikan bara api beterbangan ke udara.</p>
+                        <span class="photo-context">🔥 Acara Perkemahan</span>
+                    </div>
+                </div>
+                
+                <div class="photo-card">
+                    <img src="PXL_20240904_122534781.jpg" alt="Memasak di Panggangan" class="photo-img">
+                    <div class="photo-info">
+                        <h3 class="photo-title">Aksi Memasak Teppanyaki</h3>
+                        <p class="photo-desc">Tangan seorang koki terlihat sedang membalik atau mengolah makanan di atas panggangan datar dengan kobaran api besar, menciptakan pemandangan yang dinamis.</p>
+                        <span class="photo-context">🍳 Live Cooking</span>
+                    </div>
+                </div>
+                
+                <div class="photo-card">
+                    <img src="PXL_20240919_003731886.jpg" alt="Pemandangan Gunung" class="photo-img">
+                    <div class="photo-info">
+                        <h3 class="photo-title">Pemandangan Gunung</h3>
+                        <p class="photo-desc">Pemandangan gunung yang indah dengan langit biru cerah di latar belakang. Di bagian depan terlihat banyak sepeda motor yang terparkir dan sebuah SPBU Pertamina.</p>
+                        <span class="photo-context">🏞️ Panorama Alam</span>
+                    </div>
+                </div>
+                
+                <div class="photo-card">
+                    <img src="PXL_20250208_075604555.jpg" alt="Candi Hitam Putih" class="photo-img">
+                    <div class="photo-info">
+                        <h3 class="photo-title">Candi Prambanan</h3>
+                        <p class="photo-desc">Foto hitam putih dari Candi Prambanan dengan arsitektur khas Hindu-Buddha. Candi tersebut memiliki struktur bertingkat dengan banyak stupa kecil di bagian bawah.</p>
+                        <span class="photo-context">🏯 Warisan Budaya</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <h2>Hubungi Saya</h2>
+            <p>Ingin berkolaborasi atau sekadar menyapa? Silakan hubungi saya melalui:</p>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>muhamaddzakwan43@gmail.com</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>Instagram</h3>
+                    <p>@dzkunfeal_</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-logo">Dzakwan Photography</div>
+        <p>Menangkap momen, menciptakan kenangan.</p>
+        <p class="copyright">© 2023 Muhammad Dzakwan Naufal. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+        // Animasi scroll halus
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animasi saat elemen muncul di viewport
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
